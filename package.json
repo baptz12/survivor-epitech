@@ -51,7 +51,8 @@
 		"vite": "^7.1.5",
 		"vite-plugin-devtools-json": "^1.0.0",
 		"vitest": "^3.2.4",
-		"vitest-browser-svelte": "^0.1.0"
+		"vitest-browser-svelte": "^0.1.0",
+		"prisma": "^6.16.0"
 	},
 	"dependencies": {
 		"@prisma/client": "^6.16.0",
@@ -62,7 +63,6 @@
 		"marked": "^16.2.1",
 		"node-cron": "^4.2.1",
 		"pdfkit": "^0.17.2",
-		"prisma": "^6.16.0"
 	},
 	"trustedDependencies": [
 		"@tailwindcss/oxide"
