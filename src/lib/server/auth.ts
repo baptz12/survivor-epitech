@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { JWT_SECRET } from '$env/static/private';
+import bcrypt from 'bcryptjs';
 // The 'bcrypt' package is no longer needed, we'll use Bun's native API.
 
 // This is the shape of the data we'll encode in the JWT
@@ -32,7 +33,7 @@ export function verifyToken(token: string): UserPayload | null {
 export async function hashPassword(password: string) {
 	// Bun.password.hash() uses the bcrypt algorithm by default with a cost of 10.
 	// It's a direct, much faster replacement for bcrypt.hash().
-	return await Bun.password.hash(password);
+	return await bcrypt.hash(password, 10);
 }
 
 /**
@@ -45,5 +46,5 @@ export async function hashPassword(password: string) {
  */
 export async function comparePasswords(password: string, hash: string) {
 	// Bun.password.verify() is the native equivalent for bcrypt.compare().
-	return await Bun.password.verify(password, hash);
+	return await bcrypt.compare(password, hash);
 }
