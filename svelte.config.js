@@ -8,9 +8,13 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		base: process.argv.includes('dev') ? '' : process.env.BASE_PATH,
-		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
-		adapter: adapter()
+		paths: {
+			base: process.argv.includes('dev') ? '' : '/survivor-epitech'
+		},
+		adapter: adapter({
+			// Fallback est indispensable pour que GitHub Pages gère le routage interne de ton app
+			fallback: '404.html'
+		})
 	}
 };
 
