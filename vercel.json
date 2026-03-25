@@ -1,4 +1,0 @@
-{
-  "buildCommand": "npx prisma generate && bun run build",
-  "installCommand": "bun install"
-}
