@@ -4,7 +4,7 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"dev": "bun --bun run vite dev",
+		"dev": "prisma generate && vite build",
 		"build": "bun --bun run vite build",
 		"preview": "bun --bun run vite preview",
 		"prepare": "svelte-kit sync || echo ''",
