@@ -3,6 +3,9 @@
 	"private": true,
 	"version": "0.0.1",
 	"type": "module",
+	"overrides": {
+		  "estree-walker": "2.0.2"
+	},
 	"scripts": {
 		"dev": "bun --bun run vite dev",
 		"build": "prisma generate && bun run vite build",
@@ -15,9 +18,6 @@
 		"lint": "prettier --check . && eslint .",
 		"test:unit": "vitest",
 		"test": "npm run test:unit -- --run"
-	},
-	"overrides": {
-  		"estree-walker": "2.0.2"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.3.2",
