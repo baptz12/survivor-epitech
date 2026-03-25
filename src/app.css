@@ -1,0 +1,201 @@
+@import 'tailwindcss';
+
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+	/* NEW Dark Theme (Default) - Complementary to Sweet Pink Dreams */
+	--background: #262030; /* Very dark desaturated purple */
+	--foreground: #eed5fb; /* Lightest purple for text */
+	--card: #312b3e; /* Slightly lighter dark purple for cards */
+	--card-foreground: #eed5fb;
+	--popover: #312b3e;
+	--popover-foreground: #eed5fb;
+	--primary: #c174f2; /* Darkest vibrant purple from palette for primary actions */
+	--primary-foreground: #ffffff; /* White text on primary */
+	--secondary: #474057; /* Lighter dark purple for secondary backgrounds */
+	--secondary-foreground: #eed5fb;
+	--muted: #3a3548; /* Muted dark purple */
+	--muted-foreground: #f6aeae; /* Muted pink for muted text */
+	--accent: #d5a8f2; /* Mid-vibrant purple for accent */
+	--accent-foreground: #ffffff;
+	--destructive: #dc2626; /* Strong red for destructive actions */
+	--destructive-foreground: #ffffff;
+	--border: #5c566b; /* Darker mid-purple for borders */
+	--input: #312b3e; /* Same as card for inputs */
+	--ring: #c174f2 / 0.5; /* Primary color with transparency for focus rings */
+	--chart-1: #c174f2;
+	--chart-2: #d5a8f2;
+	--chart-3: #eed5fb;
+	--chart-4: #f18585; /* Using a pink from the palette */
+	--chart-5: #f6aeae;
+	--radius: 0.5rem;
+	--sidebar: #262030;
+	--sidebar-foreground: #eed5fb;
+	--sidebar-primary: #c174f2;
+	--sidebar-primary-foreground: #ffffff;
+	--sidebar-accent: #474057;
+	--sidebar-accent-foreground: #eed5fb;
+	--sidebar-border: #5c566b;
+	--sidebar-ring: #c174f2 / 0.5;
+}
+
+.dark {
+	/* NEW Light Theme (.dark class) - Sweet Pink Dreams Palette */
+	--background: #eed5fb; /* Lightest purple */
+	--foreground: #3c364b; /* Dark desaturated purple for general text */
+	--card: #f8cacf; /* Lightest pink for cards */
+	--card-foreground: #3c364b;
+	--popover: #f8cacf;
+	--popover-foreground: #3c364b;
+	--primary: #f18585; /* Strongest pink for primary actions */
+	--primary-foreground: #3c364b; /* Dark text on primary button for better contrast */
+	--secondary: #e4bef8; /* Lighter purple for secondary backgrounds */
+	--secondary-foreground: #3c364b;
+	--muted: #f6aeae; /* Muted pink */
+	--muted-foreground: #6f6a7b; /* Lighter desaturated purple for muted text */
+	--accent: #cb90f1; /* Vibrant mid-purple for accent */
+	--accent-foreground: #ffffff; /* White text on accent */
+	--destructive: #ef4444; /* Standard red for destructive actions */
+	--destructive-foreground: #ffffff;
+	--border: #f49c9c; /* Mid-pink for borders */
+	--input: #eed5fb; /* Same as background for inputs */
+	--ring: #f18585 / 0.5; /* Primary color with transparency for focus rings */
+	--chart-1: #f18585;
+	--chart-2: #f49c9c;
+	--chart-3: #f6aeae;
+	--chart-4: #e4bef8;
+	--chart-5: #cb90f1;
+	--sidebar: #eed5fb;
+	--sidebar-foreground: #3c364b;
+	--sidebar-primary: #f18585;
+	--sidebar-primary-foreground: #3c364b;
+	--sidebar-accent: #e4bef8;
+	--sidebar-accent-foreground: #3c364b;
+	--sidebar-border: #f49c9c;
+	--sidebar-ring: #f18585 / 0.5;
+}
+
+@theme inline {
+	--font-sans: var(--font-geist-sans);
+	--font-mono: var(--font-geist-mono);
+	/* Added Playfair Display font variable for headings */
+	--font-playfair: var(--font-playfair);
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-destructive-foreground: var(--destructive-foreground);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+	--color-chart-1: var(--chart-1);
+	--color-chart-2: var(--chart-2);
+	--color-chart-3: var(--chart-3);
+	--color-chart-4: var(--chart-4);
+	--color-chart-5: var(--chart-5);
+	--radius-sm: calc(var(--radius) - 4px);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) + 4px);
+	--color-sidebar: var(--sidebar);
+	--color-sidebar-foreground: var(--sidebar-foreground);
+	--color-sidebar-primary: var(--sidebar-primary);
+	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+	--color-sidebar-accent: var(--sidebar-accent);
+	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+	--color-sidebar-border: var(--sidebar-border);
+	--color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
+}
+
+/* Styles de bichat */
+
+/* From Uiverse.io by cssbuttons-io */
+.homebutton {
+	position: relative;
+	left: 50%;
+	align-items: center;
+	/* Updated gradient colors */
+	background-image: linear-gradient(144deg, #cb90f1, #c174f2 50%, #f18585); /* Purple to Pink */
+	border: 0;
+	border-radius: 8px;
+	box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px; /* Adjust shadow color to new palette if needed */
+	box-sizing: border-box;
+	color: #ffffff;
+	display: flex;
+	font-size: 18px;
+	justify-content: center;
+	line-height: 1em;
+	max-width: 10%;
+	min-width: 140px;
+	margin-top: 2%;
+	padding: 3px;
+	text-decoration: none;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	white-space: nowrap;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+
+.homebutton:active,
+.homebutton:hover {
+	outline: 0;
+}
+
+.homebutton span {
+	/* Updated background for span - should contrast with gradient */
+	background-color: var(--background); /* Use the current background color */
+	padding: 16px 24px;
+	border-radius: 6px;
+	width: 100%;
+	height: 100%;
+	transition: 300ms;
+}
+
+.homebutton:hover span {
+	background: none;
+}
+
+.homebutton:active {
+	transform: scale(0.9);
+}
+
+.project-card {
+	/* These should already adapt via @apply, but check for specific colors */
+	@apply block rounded-lg border border-border bg-card p-6 shadow-sm transition-all duration-200 ease-in-out;
+}
+
+.project-card:hover {
+	@apply -translate-y-1 border-primary shadow-md; /* Use primary for hover border */
+}
+
+.project-card .project-card-title {
+	@apply mb-2 text-xl font-semibold text-foreground; /* Changed from text-gray-800 */
+}
+
+.project-card:hover .project-card-title {
+	@apply text-primary; /* Use primary for hover title */
+}

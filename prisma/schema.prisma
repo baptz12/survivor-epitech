@@ -1,0 +1,155 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Event {
+  id              Int     @id @default(autoincrement())
+  external_id     Int     @unique
+  name            String
+  dates           String?
+  location        String?
+  description     String?
+  event_type      String?
+  target_audience String?
+  image_path      String?
+}
+
+model News {
+  id          Int     @id @default(autoincrement())
+  external_id Int     @unique
+  news_date   String?
+  location    String?
+  title       String
+  category    String?
+  startup_id  Int
+}
+
+model NewsDetail {
+  id          Int     @id @default(autoincrement())
+  external_id Int     @unique
+  news_date   String?
+  slug_url    String  @unique
+  location    String?
+  title       String
+  category    String?
+  startup_id  Int
+  description String
+  image_path  String?
+}
+
+model Partner {
+  id               Int     @id @default(autoincrement())
+  external_id      Int     @unique
+  name             String
+  legal_status     String?
+  address          String?
+  email            String  @unique
+  phone            String?
+  created_at       String?
+  description      String?
+  partnership_type String?
+}
+
+model Founder {
+  id         Int           @id @default(autoincrement())
+  external_id Int         @unique
+  name       String
+  startup_id Int
+  startup    StartupDetail @relation("StartupFounders", fields: [startup_id], references: [id], onDelete: Cascade)
+  image_path String?
+}
+
+model StartupDetail {
+  id               Int            @id @default(autoincrement())
+  external_id      Int            @unique
+  name             String
+  slug_url         String         @unique
+  legal_status     String?
+  description      String?
+  address          String?
+  email            String         @unique
+  phone            String?
+  created_at       String?
+  website_url      String?
+  social_media_url String?
+  project_status   String?
+  needs            String?
+  sector           String?
+  maturity         String?
+  image_path       String?
+  founders         Founder[]      @relation("StartupFounders")
+  conversations    Conversation[]
+}
+
+model StartupList {
+  id           Int     @id @default(autoincrement())
+  external_id  Int     @unique
+  name         String
+  legal_status String?
+  description  String?
+  address      String?
+  email        String  @unique
+  phone        String?
+  sector       String?
+  maturity     String?
+  image_path   String?
+}
+
+model Investor {
+  id               Int            @id @default(autoincrement())
+  external_id      Int            @unique
+  name             String
+  legal_status     String?
+  address          String?
+  email            String         @unique
+  phone            String?
+  created_at       String?
+  description      String?
+  investor_type    String?
+  investment_focus String?
+  image_path       String?
+  conversations    Conversation[]
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  external_id Int       @unique
+  email       String    @unique
+  name        String
+  password    String?
+  role        String
+  founder_id  Int?      @unique
+  investor_id Int?      @unique
+  image_path  String?
+  messages    Message[]
+}
+
+model Conversation {
+  id         Int      @id @default(autoincrement())
+  startupId  Int
+  investorId Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  startup  StartupDetail @relation(fields: [startupId], references: [id], onDelete: Cascade)
+  investor Investor      @relation(fields: [investorId], references: [id], onDelete: Cascade)
+  messages Message[]
+
+  @@unique([startupId, investorId])
+}
+
+model Message {
+  id             Int      @id @default(autoincrement())
+  content        String
+  createdAt      DateTime @default(now())
+  senderId       Int
+  conversationId Int
+
+  sender       User         @relation(fields: [senderId], references: [id], onDelete: Cascade)
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+}

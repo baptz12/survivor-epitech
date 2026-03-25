@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			// Set theme on page load to prevent flashing.
+			// Note: The CSS is set up so that the default is dark mode, and the .dark class enables light mode.
+			(function () {
+				const storedTheme = localStorage.getItem('theme');
+				const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+
+				if (storedTheme === 'light' || (!storedTheme && systemPrefersLight)) {
+					document.documentElement.classList.add('dark');
+				}
+			})();
+		</script>
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
