@@ -2,9 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ['main'] # ou 'master' selon le nom de ta branche
+    branches: ['main'] # Vérifie que ta branche s'appelle bien main (ou master)
 
-# Autoriser l'action à modifier GitHub Pages
 permissions:
   contents: read
   pages: write
@@ -23,21 +22,29 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Set up Node
-        uses: actions/setup-node@v4
+
+      # 1. On installe Bun au lieu de Node.js
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: 20
-          cache: 'npm'
+          bun-version: latest
+
+      # 2. On installe les dépendances avec Bun
       - name: Install dependencies
-        run: npm ci
+        run: bun install
+
+      # 3. On build le projet avec Bun
       - name: Build
-        run: npm run build
+        run: bun run build
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist' # Le dossier généré par Vite
+          path: './dist' # C'est le dossier généré par Vite
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
