@@ -8,9 +8,6 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		paths: {
-			base: process.argv.includes('dev') ? '' : '/survivor-epitech'
-		},
 		adapter: adapter({
 			// Fallback est indispensable pour que GitHub Pages gère le routage interne de ton app
 			fallback: '404.html'
